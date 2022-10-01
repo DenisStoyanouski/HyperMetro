@@ -21,13 +21,13 @@ public class Engine {
             while (scanner.hasNextLine()) {
                 String stationName = scanner.nextLine();
                 if (!stationName.isEmpty()) {
-                    createStation(scanner.nextLine());
+                    createStation(stationName);
                 }
             }
         } catch (FileNotFoundException e) {
             System.out.println("Error! Such a file doesn't exist!");
         }
-
+        printStations();
     }
 
     static void createStation(String stationName) {

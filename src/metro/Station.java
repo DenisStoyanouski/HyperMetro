@@ -28,7 +28,7 @@ public class Station {
     }
 
     public void printStation() {
-        System.out.printf("%s - %s - %s", getPrevStation(), stationName, getNextStation());
+        System.out.printf("%s - %s - %s%n", getPrevStation().stationName, stationName, getNextStation().stationName);
     }
 
 
