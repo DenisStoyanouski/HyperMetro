@@ -9,6 +9,7 @@ public class Station {
         this.prev = null;
         this.stationName = stationName;
         this.next = null;
+
     }
 
     public void setPrevStation(Station station) {

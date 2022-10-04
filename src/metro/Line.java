@@ -8,6 +8,8 @@ public class Line {
 
     public Line(String name) {
         this.name = name;
+        stations.add(new Station("depot"));
+        stations.add(new Station("depot"));
     }
 
     public String getName() {
@@ -19,9 +21,14 @@ public class Line {
     }
 
     public void append (Station station) {
-        stations.add(station);
-        station.setPrevStation(stations.get(stations.indexOf(station) - 1));
-        station.setNextStation(stations.get(stations.indexOf(station) + 1));
+        int index = stations.size() - 1;
+        stations.add(index, station);
+        station.setPrevStation(stations.get(index - 1));
+        station.setNextStation(stations.get(index + 1));
+
+        stations.get(index - 1).setNextStation(station);
+        stations.get(index + 1).setPrevStation(station);
+
     }
 
     //add object Station to first place - after depot
