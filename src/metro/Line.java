@@ -51,7 +51,9 @@ public class Line {
     // output all stations in format "previous station - station - next station"
     public void output () {
         for (int i = 1; i < stations.size() - 1; i++) {
-            System.out.printf("%s - %s - %s%n", stations.get(i -1).stationName, stations.get(i).stationName, stations.get(i + 1).stationName);
+            Station currentStation = stations.get(i);
+            System.out.printf("%s - %s - %s%n", currentStation.getPrevStation().stationName, currentStation.stationName,
+                    currentStation.getNextStation().stationName);
         }
     }
 }

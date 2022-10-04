@@ -27,7 +27,6 @@ public class Engine {
         } catch (FileNotFoundException e) {
             System.out.println("Error! Such a file doesn't exist!");
         }
-        printStations();
     }
 
     static void createStation(String stationName) {
@@ -38,12 +37,6 @@ public class Engine {
         tail.setPrevStation(station);
         last = station;
         metroLine.add(station);
-    }
-
-    static void printStations() {
-        for (Station station : metroLine) {
-            station.printStation();
-        }
     }
 
 }
