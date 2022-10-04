@@ -19,6 +19,10 @@ public class Line {
     }
 
     public void append (String station) {
+        stations.add(station);
+    }
 
+    public void addHead (String station) {
+        stations.addFirst(station);
     }
 }
