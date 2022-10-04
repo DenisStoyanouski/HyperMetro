@@ -46,8 +46,8 @@ public class Line {
     }
 
     public void output () {
-        for (String station : stations) {
-            System.out.println(station.get);
+        for (int i = 1; i < stations.size() - 1; i++) {
+            System.out.printf("%s - %s - %s%n", stations.get(i -1).stationName, stations.get(i).stationName, stations.get(i + 1).stationName);
         }
     }
 }
