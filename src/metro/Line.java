@@ -25,4 +25,10 @@ public class Line {
     public void addHead (String station) {
         stations.addFirst(station);
     }
+
+    public void remove (String station) {
+        stations.remove(station);
+    }
+
+
 }
