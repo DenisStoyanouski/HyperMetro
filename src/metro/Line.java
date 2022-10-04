@@ -44,12 +44,13 @@ public class Line {
     public void remove (Station station) {
         try {
             // change links of previous and next stations
-            stations.get(stations.indexOf(station) - 1).setNextStation(stations.get(stations.indexOf(station) + 1));
-            stations.get(stations.indexOf(station) + 1).setPrevStation(stations.get(stations.indexOf(station) - 1));
+            int index = stations.indexOf(station);
+            stations.get(index - 1).setNextStation(stations.get(index + 1));
+            stations.get(index + 1).setPrevStation(stations.get(index - 1));
             //remove station from line
             stations.remove(station);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
-            System.out.println("Incorrect station");
+            System.out.println("Incorrect station name");
         }
 
 
