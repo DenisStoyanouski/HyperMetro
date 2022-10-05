@@ -58,9 +58,6 @@ public class Engine {
             } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
                 System.out.println("Invalid command");
             }
-
         }
-
     }
-
 }
