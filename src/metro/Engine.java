@@ -34,34 +34,31 @@ public class Engine {
     }
 
     static void runCommand() {
-        String command = null;
-        String lineName = null;
-        String stationName = null;
+        String command;
+
         while (true) {
             String[] commands = getInput().trim().split("(?<!\"\\w{2,20})\\s");
-            System.out.println(Arrays.toString(commands));
+            command = commands[0];
             try {
-                command = commands[0];
-                lineName = commands[1];
-                stationName = commands[2].replaceAll("\"", "");
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("Bad exception");
+                switch(command) {
+                    case "/append" : metro.get(commands[1]).append(new Station(commands[2].replaceAll("\"", "")));
+                        break;
+                    case "/add-head" : metro.get(commands[1]).addHead(new Station(commands[2].replaceAll("\"", "")));
+                        break;
+                    case "/remove" : metro.get(commands[1]).remove(commands[2].replaceAll("\"", ""));
+                        break;
+                    case "/output" : metro.get(commands[1]).output();
+                        break;
+                    case "/exit" : System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Invalid command");
+                        break;
+                }
+            } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
+                System.out.println("Invalid command");
             }
-            switch(command) {
-                case "/append" : metro.get(lineName).append(new Station(stationName));
-                    break;
-                case "/add-head" : metro.get(lineName).addHead(new Station(stationName));
-                    break;
-                case "/remove" : metro.get(lineName).remove(stationName);
-                    break;
-                case "/output" : metro.get(lineName).output();
-                    break;
-                case "/exit" : System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid command");
-                    break;
-            }
+
         }
 
     }
