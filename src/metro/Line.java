@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private final String name;
+    public final String name;
     private final List<Station> stations = new ArrayList<>();
 
     public Line(String name) {
@@ -12,12 +12,14 @@ public class Line {
         stations.add(new Station("depot"));
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public List<Station> getStations() {
-        return stations;
+    public Station getStation(String stationName) {
+        Station currentStation = null;
+        for (Station station : stations) {
+            if (station.stationName.equals(stationName)) {
+                currentStation = station;
+            }
+        }
+        return currentStation;
     }
 
     public void append (Station station) {
@@ -49,14 +51,20 @@ public class Line {
         stations.get(2).setPrevStation(station);
     }
 
-    public void remove (Station station) {
+    public void remove (String stationName) {
+        Station currentStation = null;
+        for (Station station : stations) {
+            if (station.stationName.equals(stationName)) {
+                currentStation = station;
+            }
+        }
         try {
             // change links of previous and next stations
-            int index = stations.indexOf(station);
+            int index = stations.indexOf(currentStation);
             stations.get(index - 1).setNextStation(stations.get(index + 1));
             stations.get(index + 1).setPrevStation(stations.get(index - 1));
             //remove station from line
-            stations.remove(station);
+            stations.remove(currentStation);
         } catch (NullPointerException | IndexOutOfBoundsException e) {
             System.out.println("Incorrect station name");
         }
