@@ -23,13 +23,13 @@ public class GsonStreamApiRead {
                     } else if (JsonToken.NAME.equals(nextToken) && lineName == null) {
                         lineName = reader.nextName();
                         line = new Line(lineName);
+                        Engine.metro.put(lineName, line);
                     } else if (JsonToken.NAME.equals(nextToken)) {
                         indexOfStation = Integer.parseInt(reader.nextName());
                     } else if (JsonToken.STRING.equals(nextToken)) {
                         stationName = reader.nextString();
                         assert line != null;
                         line.addByIndex(indexOfStation, new Station(stationName));
-                        indexOfStation = 0;
                     } else if (JsonToken.END_OBJECT.equals(nextToken)) {
                         reader.endObject();
                         lineName = null;
@@ -43,5 +43,6 @@ public class GsonStreamApiRead {
             } catch (IOException e) {
                 System.out.println("Error! Such a file doesn't exist!");
             }
+
         }
 }

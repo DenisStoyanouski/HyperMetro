@@ -11,6 +11,8 @@ public class Main {
         if (!matcher.matches()) {
             System.out.println("Incorrect file");
             System.exit(0);
+        } else {
+            fileName = String.format(".\\%s",fileName);
         }
         Engine.readFile(fileName);
 
