@@ -1,30 +1,14 @@
 package metro;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Engine {
     final static Map<String, Line> metro = new HashMap<>();
 
     static void readFile(String fileName) {
-        File source = new File(String.format(".\\%s", fileName));
-        Line line = new Line("firstLine");
-        metro.put(line.name, line);
-        try (Scanner scanner = new Scanner(source)) {
-            while (scanner.hasNextLine()) {
-                String stationName = scanner.nextLine();
-                if (!stationName.isEmpty()) {
-                    line.append(new Station(stationName));
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Error! Such a file doesn't exist!");
-        }
+        GsonStreamApiRead.read(fileName);
         runCommand();
     }
 
