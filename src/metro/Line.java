@@ -30,6 +30,14 @@ public class Line {
         stations.get(index + 1).setPrevStation(station);
 
     }
+    public void addByIndex(int index, Station station) {
+        stations.add(index, station);
+        station.setPrevStation(stations.get(index - 1));
+        station.setNextStation(stations.get(index + 1));
+
+        stations.get(index - 1).setNextStation(station);
+        stations.get(index + 1).setPrevStation(station);
+    }
 
     //add object Station to first place - after depot
     public void addHead (Station station) {
