@@ -7,16 +7,18 @@ import java.util.regex.Pattern;
 public class Main {
     public static void main(String[] args) {
         String fileName = args[0];
-        Pattern pattern = Pattern.compile(".+(?<!\\.)\\.json\\b");
+        File file;
+        file = new File(fileName);
+        /*Pattern pattern = Pattern.compile(".+(?<!\\.)\\.json\\b");
         Matcher matcher = pattern.matcher(fileName);
-        File file = null;
         if (!matcher.matches()) {
+            file = null;
             System.out.println("Incorrect file");
             System.exit(0);
         } else {
             fileName = fileName.replaceAll("\\/", "\\\\").replaceFirst("\\.", ".\\\\HyperMetro\\\\task");
             file = new File(fileName);
-        }
+        }*/
         Engine.readFile(file);
 
 

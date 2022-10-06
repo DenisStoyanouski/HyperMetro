@@ -22,7 +22,7 @@ class Engine {
         String command;
 
         while (true) {
-            String[] commands = getInput().trim().split("(?<!\"\\w{2,20})\\s");
+            String[] commands = getInput().trim().split("(?<!(\"\\w{1,10}))\\s(?!(\\w+\"))");
             command = commands[0];
             try {
                 switch(command) {
