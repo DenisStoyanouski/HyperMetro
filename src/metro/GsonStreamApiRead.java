@@ -2,18 +2,20 @@ package metro;
 
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
+
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class GsonStreamApiRead {
 
-        static void read(String fileName) {
+        static void read(File file) {
             String lineName = null;
             String stationName;
             int indexOfStation = 0;
             Line line = null;
 
-            try (JsonReader reader = new JsonReader(new FileReader(fileName))) {
+            try (JsonReader reader = new JsonReader(new FileReader(file))) {
 
                 while (true) {
                     //We get the type of the next token with the peek method.

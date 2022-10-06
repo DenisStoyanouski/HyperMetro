@@ -1,14 +1,15 @@
 package metro;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Engine {
+class Engine {
     final static Map<String, Line> metro = new HashMap<>();
 
-    static void readFile(String fileName) {
-        GsonStreamApiRead.read(fileName);
+    static void readFile(File file) {
+        GsonStreamApiRead.read(file);
         runCommand();
     }
 
