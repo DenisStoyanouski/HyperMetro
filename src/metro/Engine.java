@@ -26,13 +26,13 @@ class Engine {
             command = commands[0];
             try {
                 switch(command) {
-                    case "/append" : metro.get(commands[1]).append(new Station(commands[2].replaceAll("\"", "")));
+                    case "/append" : metro.get(commands[1].replaceAll("\"","")).append(new Station(commands[2].replaceAll("\"", "")));
                         break;
-                    case "/add-head" : metro.get(commands[1]).addHead(new Station(commands[2].replaceAll("\"", "")));
+                    case "/add-head" : metro.get(commands[1].replaceAll("\"","")).addHead(new Station(commands[2].replaceAll("\"", "")));
                         break;
-                    case "/remove" : metro.get(commands[1]).remove(commands[2].replaceAll("\"", ""));
+                    case "/remove" : metro.get(commands[1].replaceAll("\"","")).remove(commands[2].replaceAll("\"", ""));
                         break;
-                    case "/output" : metro.get(commands[1]).output();
+                    case "/output" : metro.get(commands[1].replaceAll("\"","")).output();
                         break;
                     case "/exit" : System.exit(0);
                         break;
