@@ -31,7 +31,7 @@ public class GsonStreamApiRead {
                     } else if (JsonToken.STRING.equals(nextToken)) {
                         stationName = reader.nextString();
                         assert line != null;
-                        line.addByIndex(indexOfStation, new Station(stationName));
+                        line.addByIndex(indexOfStation, stationName);
                     } else if (JsonToken.END_OBJECT.equals(nextToken)) {
                         reader.endObject();
                         lineName = null;
