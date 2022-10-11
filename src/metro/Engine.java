@@ -9,6 +9,8 @@ import java.util.Scanner;
 class Engine {
     static Map<String, Line> metro = new HashMap<>();
 
+    static String[] commands;
+
     static void readFile(File file) throws IOException {
         GsonStreamApiRead.read(file);
         runCommand();
@@ -23,7 +25,7 @@ class Engine {
         String command;
 
         while (true) {
-            String[] commands = getInput().trim().split("(?<!(\"\\w{1,10}))\\s(?!(\\w+\"))");
+            commands = getInput().trim().split("(?<!(\"\\w{1,10}))\\s(?!(\\w+\"))");
             command = commands[0];
             try {
                 switch(command) {
@@ -32,6 +34,8 @@ class Engine {
                     case "/add-head" : metro.get(commands[1].replaceAll("\"","")).addHead(commands[2].replaceAll("\"", ""));
                         break;
                     case "/remove" : metro.get(commands[1].replaceAll("\"","")).remove(commands[2].replaceAll("\"", ""));
+                        break;
+                    case "/connect" : connect();
                         break;
                     case "/output" : metro.get(commands[1].replaceAll("\"","")).printStation();
                         break;
@@ -45,5 +49,21 @@ class Engine {
                 System.out.println("Invalid command");
             }
         }
+    }
+
+    private static void connect() {
+        try {
+            String line1 = commands[1].replaceAll("\"","");
+            String station1 = commands[2].replaceAll("\"","");
+            String line2 = commands[3].replaceAll("\"","");
+            String station2 = commands[4].replaceAll("\"","");
+
+            metro.get(line1).getStationByName(station1).addTransfer(line2, station2);
+            metro.get(line2).getStationByName(station2).addTransfer(line1, station1);
+
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
+            System.out.println("Invalid command");
+        }
+
     }
 }
