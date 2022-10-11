@@ -29,7 +29,7 @@ public class Line {
         line.add(1, new Station(stationName));
     }
 
-    public void addByIndex(int index, String stationName) {
+    public void addStationByIndex(int index, String stationName) {
         line.add(index, new Station(stationName));
     }
 
@@ -44,9 +44,9 @@ public class Line {
     }
 
     // output all stations in format "previous station - station - next station"
-    public void output () {
-        for (int i = 1; i < line.size() - 1; i++) {
-            System.out.println(line.get(i).getStationName());
+    public void printStation() {
+        for (Station station : line) {
+            System.out.println(station.toString());
         }
     }
 }
