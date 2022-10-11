@@ -69,9 +69,7 @@ public class GsonStreamApiRead {
                     }
                 }
             }
-            for (Line line : Engine.metro.values()) {
-                line.printStation();
-            }
+            System.out.println("file is downloaded");
         }
 
     private static void handleJsonObject(JsonReader reader) throws IOException {

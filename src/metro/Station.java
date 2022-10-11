@@ -22,7 +22,7 @@ public class Station {
     public String printTransfer() {
         String line = transfer.keySet().toString().replaceAll("[\\[\\]]","");
         String station = transfer.values().toString().replaceAll("[\\[\\]]","");
-        return String.format("%s - (%s)", station, line);
+        return String.format("%s (%s)", station, line);
     }
 
     @Override
