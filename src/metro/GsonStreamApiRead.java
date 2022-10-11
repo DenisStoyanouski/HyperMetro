@@ -114,6 +114,8 @@ public class GsonStreamApiRead {
     private static void handleJsonArray(JsonReader reader) throws IOException {
         reader.beginArray();
         String fieldName;
+        String line = null;
+        String station;
 
         while (true) {
             JsonToken token = reader.peek();
@@ -127,11 +129,12 @@ public class GsonStreamApiRead {
                 fieldName = reader.nextName();
                 if ("line".equals(fieldName)) {
                     token = reader.peek();
-                    String line = reader.nextString();
+                    line = reader.nextString();
                 }
                 if ("station".equals(fieldName)) {
                     token = reader.peek();
-                    String station = reader.nextString();
+                    station = reader.nextString();
+                    currentLine.getStationByName(nameOfStation).addTransfer(line, station);
                 }
 
             } else if (token.equals(JsonToken.END_OBJECT)) {
