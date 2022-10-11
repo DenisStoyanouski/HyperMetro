@@ -22,7 +22,7 @@ public class Line {
     }
 
     public void add(String stationName) {
-        line.add(line.size() - 2, new Station(stationName));
+        line.add(line.size() - 1, new Station(stationName));
     }
 
     public void addHead(String stationName) {
