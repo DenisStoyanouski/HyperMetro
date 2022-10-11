@@ -57,7 +57,7 @@ class Engine {
             String station1 = commands[2].replaceAll("\"","");
             String line2 = commands[3].replaceAll("\"","");
             String station2 = commands[4].replaceAll("\"","");
-
+            //add connections to stations;
             metro.get(line1).getStationByName(station1).addTransfer(line2, station2);
             metro.get(line2).getStationByName(station2).addTransfer(line1, station1);
 

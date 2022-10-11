@@ -46,11 +46,14 @@ public class GsonStreamApiRead {
                             nextToken = reader.peek();
 
                             if (nextToken.equals(JsonToken.NULL)) {
-                                reader.nextNull();;
+                                reader.nextNull();
                             }
                             if (nextToken.equals(JsonToken.BEGIN_OBJECT)) {
                                 isTransfer = true;
                                 handleJsonObject(reader);
+                            }
+                            if (nextToken.equals(JsonToken.BEGIN_ARRAY)) {
+                                handleJsonArray(reader);
                             }
                         }
                     } else if (JsonToken.NULL.equals(nextToken)) {
@@ -76,7 +79,7 @@ public class GsonStreamApiRead {
         reader.beginObject();
         String fieldName = null;
         String line = null;
-        String station = null;
+        String station;
 
         while (reader.hasNext()) {
             JsonToken token = reader.peek();
@@ -110,7 +113,7 @@ public class GsonStreamApiRead {
 
     private static void handleJsonArray(JsonReader reader) throws IOException {
         reader.beginArray();
-        String fieldName = null;
+        String fieldName;
 
         while (true) {
             JsonToken token = reader.peek();
@@ -130,6 +133,7 @@ public class GsonStreamApiRead {
                     token = reader.peek();
                     String station = reader.nextString();
                 }
+
             } else if (token.equals(JsonToken.END_OBJECT)) {
                 reader.endObject();
             }
