@@ -42,7 +42,7 @@ class Engine {
                         connect();
                         break;
                     case "/output":
-                        metro.get(commands[1].replaceAll("\"", "")).printStation();
+                        metro.get(commands[1].replaceAll("\"", "")).printStations();
                         break;
                     case "/exit":
                         System.exit(0);

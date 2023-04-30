@@ -6,16 +6,11 @@ import java.util.Map;
 public class Station {
     private final String name;
     private final Map<String, String> transfer = new HashMap<>();
-    private final int time;
+    private int time;
 
     public Station(String name) {
         this.name = name;
-        this.time = 0;
-    }
 
-    public Station(String name, int time) {
-        this.name = name;
-        this.time = time;
     }
 
     public String getStationName() {
@@ -24,6 +19,10 @@ public class Station {
 
     public void addTransfer(String lineName, String stationName) {
         transfer.put(lineName, stationName);
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 
     public String printTransfer() {

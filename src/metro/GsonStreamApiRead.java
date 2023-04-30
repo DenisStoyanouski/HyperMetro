@@ -11,11 +11,13 @@ public class GsonStreamApiRead {
 
     static Line currentLine = null;
 
-    static String key = null;
+    static String stationId = null;
 
     static boolean isTransfer = false;
 
     static String nameOfStation = null;
+
+    static int time;
 
     static JsonToken nextToken;
 
@@ -31,18 +33,17 @@ public class GsonStreamApiRead {
                     String currentLineName = reader.nextName();
                     currentLine = new Line(currentLineName);
                     Engine.metro.put(currentLineName, currentLine);
-                } else if (JsonToken.NAME.equals(nextToken) && key == null) {
-                    key = reader.nextName();
+                } else if (JsonToken.NAME.equals(nextToken) && stationId == null) {
+                    stationId = reader.nextName();
                 } else if (JsonToken.NAME.equals(nextToken)) {
-                    String fieldName = reader.nextName();
-                    if ("name".equals(fieldName.replaceAll("\"", ""))) {
+                    String fieldName = reader.nextName().replaceAll("\"", "");
+                    if ("name".equals(fieldName)) {
                         nextToken = reader.peek();
                         nameOfStation = reader.nextString();
-                        currentLine.addStationByIndex(Integer.parseInt(key), nameOfStation);
+                        currentLine.addStationByIndex(Integer.parseInt(stationId), nameOfStation);
                     }
-                    if ("transfer".equals(fieldName.replaceAll("\"", ""))) {
+                    if ("transfer".equals(fieldName)) {
                         nextToken = reader.peek();
-
                         if (nextToken.equals(JsonToken.NULL)) {
                             reader.nextNull();
                         }
@@ -54,14 +55,23 @@ public class GsonStreamApiRead {
                             handleJsonArray(reader);
                         }
                     }
+                    if ("time".equals(fieldName)) {
+                        nextToken = reader.peek();
+                        try {
+                            time = reader.nextInt();
+                        } catch (IllegalStateException e) {
+                            time = 0;
+                        }
+                        currentLine.getStationByName(nameOfStation).setTime(time);
+                    }
                 } else if (JsonToken.NULL.equals(nextToken)) {
                     reader.skipValue();
                 } else if (JsonToken.END_OBJECT.equals(nextToken)) {
                     reader.endObject();
                     if (isTransfer) {
                         isTransfer = false;
-                    } else if (key != null) {
-                        key = null;
+                    } else if (stationId != null) {
+                        stationId = null;
                     } else {
                         currentLine = null;
                     }

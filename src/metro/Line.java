@@ -45,7 +45,7 @@ public class Line {
     }
 
     // output all stations in format "previous station - station - next station"
-    public void printStation() {
+    public void printStations() {
         for (Station station : line) {
             System.out.println(station.toString());
         }
