@@ -28,18 +28,24 @@ class Engine {
             commands = getInput().trim().split("(?<!(\"\\w{1,10}))\\s(?!(\\w+\"))");
             command = commands[0];
             try {
-                switch(command) {
-                    case "/append" : metro.get(commands[1].replaceAll("\"","")).add(commands[2].replaceAll("\"", ""));
+                switch (command) {
+                    case "/append":
+                        metro.get(commands[1].replaceAll("\"", "")).add(commands[2].replaceAll("\"", ""));
                         break;
-                    case "/add-head" : metro.get(commands[1].replaceAll("\"","")).addHead(commands[2].replaceAll("\"", ""));
+                    case "/add-head":
+                        metro.get(commands[1].replaceAll("\"", "")).addHead(commands[2].replaceAll("\"", ""));
                         break;
-                    case "/remove" : metro.get(commands[1].replaceAll("\"","")).remove(commands[2].replaceAll("\"", ""));
+                    case "/remove":
+                        metro.get(commands[1].replaceAll("\"", "")).remove(commands[2].replaceAll("\"", ""));
                         break;
-                    case "/connect" : connect();
+                    case "/connect":
+                        connect();
                         break;
-                    case "/output" : metro.get(commands[1].replaceAll("\"","")).printStation();
+                    case "/output":
+                        metro.get(commands[1].replaceAll("\"", "")).printStation();
                         break;
-                    case "/exit" : System.exit(0);
+                    case "/exit":
+                        System.exit(0);
                         break;
                     default:
                         System.out.println("Invalid command");
@@ -53,10 +59,10 @@ class Engine {
 
     private static void connect() {
         try {
-            String line1 = commands[1].replaceAll("\"","");
-            String station1 = commands[2].replaceAll("\"","");
-            String line2 = commands[3].replaceAll("\"","");
-            String station2 = commands[4].replaceAll("\"","");
+            String line1 = commands[1].replaceAll("\"", "");
+            String station1 = commands[2].replaceAll("\"", "");
+            String line2 = commands[3].replaceAll("\"", "");
+            String station2 = commands[4].replaceAll("\"", "");
             //add connections to stations;
             metro.get(line1).getStationByName(station1).addTransfer(line2, station2);
             metro.get(line2).getStationByName(station2).addTransfer(line1, station1);
@@ -64,6 +70,5 @@ class Engine {
         } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
             System.out.println("Invalid command");
         }
-
     }
 }

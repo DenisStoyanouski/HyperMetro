@@ -1,4 +1,5 @@
 package metro;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -20,7 +21,5 @@ public class Main {
             System.exit(0);
         }
         Engine.readFile(file);
-
-
     }
 }

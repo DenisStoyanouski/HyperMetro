@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Station {
     private final String name;
-    private Map<String, String> transfer = new HashMap<>();
+    private final Map<String, String> transfer = new HashMap<>();
 
     public Station(String name) {
         this.name = name;
@@ -20,8 +20,8 @@ public class Station {
     }
 
     public String printTransfer() {
-        String line = transfer.keySet().toString().replaceAll("[\\[\\]]","");
-        String station = transfer.values().toString().replaceAll("[\\[\\]]","");
+        String line = transfer.keySet().toString().replaceAll("[\\[\\]]", "");
+        String station = transfer.values().toString().replaceAll("[\\[\\]]", "");
         return String.format("%s (%s)", station, line);
     }
 
