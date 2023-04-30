@@ -6,9 +6,16 @@ import java.util.Map;
 public class Station {
     private final String name;
     private final Map<String, String> transfer = new HashMap<>();
+    private final int time;
 
     public Station(String name) {
         this.name = name;
+        this.time = 0;
+    }
+
+    public Station(String name, int time) {
+        this.name = name;
+        this.time = time;
     }
 
     public String getStationName() {
